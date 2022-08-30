@@ -1,4 +1,5 @@
-// 一定要边写边测试 
+// 先写好程序整体架构
+// 边写边测试 
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -15,31 +16,31 @@ int main() {
 	
 	int tmpColumn = 0, tmpRow = 0, tmpCount = 0; // tmpColumn临时横坐标，tmpRow临时纵坐标，tmpCount统计某人在风险矩阵中的连续坐标数 
 	for (int person = 1; person <= people; person++) {
-		tmpCount = 0;
-		for (int time = 1; time <= times; time++) {
-			cin >> tmpColumn >> tmpRow;
-			if (tmpColumn < leftColumn || tmpColumn > rightColumn)  { // 剔除纵坐标不符合的情况 
-				tmpCount = 0;
-				continue;
-			}
-			else if (tmpRow < leftRow || tmpRow > rightRow)  { // 剔除横坐标不符合的情况 
-				tmpCount = 0;
-				continue;
-			}
-			else { // 判定为经过人群 
-				tmpCount++;
-				passCount[person] = 1;
-				if (tmpCount >= continuity) { // 如果满足连续坐标数大于times，则判定为逗留人群 
-					lingerCount[person] = 1;
-				}
-			}
+	    tmpCount = 0;
+	    for (int time = 1; time <= times; time++) {
+		cin >> tmpColumn >> tmpRow;
+		if (tmpColumn < leftColumn || tmpColumn > rightColumn)  { // 剔除纵坐标不符合的情况 
+		    tmpCount = 0;
+		    continue;
 		}
+		else if (tmpRow < leftRow || tmpRow > rightRow)  { // 剔除横坐标不符合的情况 
+		    tmpCount = 0;
+		    continue;
+		}
+		else { // 判定为经过人群 
+		    tmpCount++;
+		    passCount[person] = 1;
+		    if (tmpCount >= continuity) { // 如果满足连续坐标数大于times，则判定为逗留人群 
+		        lingerCount[person] = 1;
+		    }
+		}
+	    }
 	}
 	
 	int resultPass = 0, resultLinger = 0;
 	for (int index = 1; index <= people; index++) {
-		resultPass += passCount[index];
-		resultLinger += lingerCount[index];
+	    resultPass += passCount[index];
+	    resultLinger += lingerCount[index];
 	}
 	delete[] passCount;
 	delete[] lingerCount;
