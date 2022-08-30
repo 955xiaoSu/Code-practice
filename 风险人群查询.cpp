@@ -1,35 +1,35 @@
-// Ò»¶¨Òª±ßĞ´±ß²âÊÔ 
+// ä¸€å®šè¦è¾¹å†™è¾¹æµ‹è¯• 
 #include <iostream>
 #include <string.h>
 using namespace std;
 
 int main() {
-	int people = 0, continuity = 0, times = 0;  					 // people²âÊÔÈËÊı£¬ continuityÅĞ¶¨¶ºÁôµÄÁ¬ĞøÊ±¿Ì£¬times²âÊÔÊ±¼äÊı                      
-	int  leftColumn = 0, leftRow = 0, rightColumn = 0, rightRow = 0; // ·çÏÕ¾ØÕóµÄ×óÏÂÓëÓÒÉÏ×ø±ê 
+	int people = 0, continuity = 0, times = 0;                       // peopleæµ‹è¯•äººæ•°ï¼Œ continuityåˆ¤å®šé€—ç•™çš„è¿ç»­æ—¶åˆ»ï¼Œtimesæµ‹è¯•æ—¶é—´æ•°                      
+	int  leftColumn = 0, leftRow = 0, rightColumn = 0, rightRow = 0; // é£é™©çŸ©é˜µçš„å·¦ä¸‹ä¸å³ä¸Šåæ ‡ 
 	cin >> people >> continuity >> times >> leftColumn >> leftRow >> rightColumn >> rightRow;
 	
-	int* passCount = new int [people + 1];            // passCount¾­¹ıÈËÈºÍ³¼Æ£¬
-	int* lingerCount = new int [people + 1];          // lingerCount¶ºÁôÈËÈºÍ³¼Æ 
-	memset(passCount, 0, sizeof(int) * (people + 1)); // Ê¹ÓÃmemsetÖ»ÄÜ³õÊ¼»¯Îª0 / -1£¬²¢ÇÒ³õÊ¼»¯´óĞ¡²»ÄÜÓÃsizeof(pointer)£¬·ñÔò»áµ¼ÖÂÖ»³õÊ¼»¯Ò»²¿·ÖÄÚ´æ 
+	int* passCount = new int [people + 1];            // passCountç»è¿‡äººç¾¤ç»Ÿè®¡ï¼Œ
+	int* lingerCount = new int [people + 1];          // lingerCounté€—ç•™äººç¾¤ç»Ÿè®¡ 
+	memset(passCount, 0, sizeof(int) * (people + 1)); // ä½¿ç”¨memsetåªèƒ½åˆå§‹åŒ–ä¸º0 / -1ï¼Œå¹¶ä¸”åˆå§‹åŒ–å¤§å°ä¸èƒ½ç”¨sizeof(pointer)ï¼Œå¦åˆ™ä¼šå¯¼è‡´åªåˆå§‹åŒ–ä¸€éƒ¨åˆ†å†…å­˜ 
 	memset(lingerCount, 0, sizeof(int) * (people + 1));
 	
-	int tmpColumn = 0, tmpRow = 0, tmpCount = 0; // tmpColumn£¬tmpRowÁÙÊ±×ø±êÍ³¼Æ£¬tmpCountÍ³¼ÆÄ³ÈËÁ¬ĞøÔÚ·çÏÕ¾ØÕóµÄ×ø±êÊı 
+	int tmpColumn = 0, tmpRow = 0, tmpCount = 0; // tmpColumnä¸´æ—¶æ¨ªåæ ‡ï¼ŒtmpRowä¸´æ—¶çºµåæ ‡ï¼ŒtmpCountç»Ÿè®¡æŸäººåœ¨é£é™©çŸ©é˜µä¸­çš„è¿ç»­åæ ‡æ•° 
 	for (int person = 1; person <= people; person++) {
 		tmpCount = 0;
 		for (int time = 1; time <= times; time++) {
 			cin >> tmpColumn >> tmpRow;
-			if (tmpColumn < leftColumn || tmpColumn > rightColumn)  { // ÌŞ³ı×İ×ø±ê²»·ûºÏµÄÇé¿ö 
+			if (tmpColumn < leftColumn || tmpColumn > rightColumn)  { // å‰”é™¤çºµåæ ‡ä¸ç¬¦åˆçš„æƒ…å†µ 
 				tmpCount = 0;
 				continue;
 			}
-			else if (tmpRow < leftRow || tmpRow > rightRow)  { // ÌŞ³ıºá×ø±ê²»·ûºÏµÄÇé¿ö 
+			else if (tmpRow < leftRow || tmpRow > rightRow)  { // å‰”é™¤æ¨ªåæ ‡ä¸ç¬¦åˆçš„æƒ…å†µ 
 				tmpCount = 0;
 				continue;
 			}
-			else { // ÅĞ¶¨Îª¾­¹ıÈËÈº 
+			else { // åˆ¤å®šä¸ºç»è¿‡äººç¾¤ 
 				tmpCount++;
 				passCount[person] = 1;
-				if (tmpCount >= continuity) { // Èç¹ûÂú×ãÁ¬Ğø×ø±êÊı´óÓÚtimes£¬ÔòÅĞ¶¨Îª¶ºÁôÈËÈº 
+				if (tmpCount >= continuity) { // å¦‚æœæ»¡è¶³è¿ç»­åæ ‡æ•°å¤§äºtimesï¼Œåˆ™åˆ¤å®šä¸ºé€—ç•™äººç¾¤ 
 					lingerCount[person] = 1;
 				}
 			}
