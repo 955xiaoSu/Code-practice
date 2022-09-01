@@ -6,7 +6,7 @@ int counts = 0;
 
 // 归并排序的时间复杂度是nlogn。为什么呢？
 // 首先得递归logn次，其次每次合并的时间复杂度都是n，因为每个数字都会被遍历一遍  
-void MergeSort(int A[], int temp[], int left, int right) {
+void MergeSort(int* A, int* temp, int left, int right) {
     if (left == right) return; // 递归结束条件
  	// 分治法中的"分"
  	int mid = (left + right) / 2; 
@@ -43,6 +43,8 @@ int main() {
 	MergeSort(digits, temp, 0, num - 1);
 	ans.push_back(counts);
 	counts = 0;
+	delete []temp;
+	delete []digits;
     }
     for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
 	cout << *it << endl;
