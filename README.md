@@ -1,1 +1,1 @@
-# This is HNUer's summer homework, including CG code and CCF problems's code.
+# This is HNUer's summer homework, problems here come from CG system and CCF official website.
