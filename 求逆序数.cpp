@@ -1,56 +1,51 @@
-// ½«´ğ°¸´æ´¢µ½vector<int>ÈİÆ÷µ±ÖĞ£¬²ÉÓÃ¹é²¢Ëã·¨ÅÅĞò²¢ÇóÄæĞòÊı£¬ÒÔ¿Õ¼ä»»Ê±¼ä 
-
+// å°†ç­”æ¡ˆå­˜å‚¨åˆ°vector<int>å®¹å™¨å½“ä¸­ï¼Œé‡‡ç”¨å½’å¹¶ç®—æ³•æ’åºå¹¶æ±‚é€†åºæ•°ï¼Œä»¥ç©ºé—´æ¢æ—¶é—´ 
 #include <iostream>
 #include <vector>
 using namespace std;
-
 int counts = 0;
 
-// ¹é²¢ÅÅĞòµÄÊ±¼ä¸´ÔÓ¶ÈÊÇnlogn¡£ÎªÊ²Ã´ÄØ£¿
-// Ê×ÏÈµÃµİ¹élogn´Î£¬Æä´ÎÃ¿´ÎºÏ²¢µÄÊ±¼ä¸´ÔÓ¶È¶¼ÊÇn£¬ÒòÎªÃ¿¸öÊı×Ö¶¼»á±»±éÀúÒ»±é  
+// å½’å¹¶æ’åºçš„æ—¶é—´å¤æ‚åº¦æ˜¯nlognã€‚ä¸ºä»€ä¹ˆå‘¢ï¼Ÿ
+// é¦–å…ˆå¾—é€’å½’lognæ¬¡ï¼Œå…¶æ¬¡æ¯æ¬¡åˆå¹¶çš„æ—¶é—´å¤æ‚åº¦éƒ½æ˜¯nï¼Œå› ä¸ºæ¯ä¸ªæ•°å­—éƒ½ä¼šè¢«éå†ä¸€é  
 void MergeSort(int A[], int temp[], int left, int right) {
-    if (left == right) return; // µİ¹é½áÊøÌõ¼ş
- 	// ·ÖÖÎ·¨ÖĞµÄ"·Ö"
+    if (left == right) return; // é€’å½’ç»“æŸæ¡ä»¶
+ 	// åˆ†æ²»æ³•ä¸­çš„"åˆ†"
  	int mid = (left + right) / 2; 
  	MergeSort(A, temp, left, mid);
  	MergeSort(A, temp, mid + 1, right);
- 	// ·ÖÖÎ·¨ÖĞµÄ"ÖÎ"
- 	int leftPos = left, leftEnd = mid, rightPos = mid + 1, rightEnd = right; // Éè¶¨Êı×éµÄ±ß½ç±äÁ¿
- 	int curr = left; // ¼ÇÂ¼µ±Ç°Êı×éÔªËØÏÂ±ê
- 	while (leftPos <= leftEnd && rightPos <= rightEnd) { // ½«ËùÖ¸½ÏĞ¡ÔªËØ·ÅÈëtempÊı×éÖĞ
-    	if (A[leftPos] <= A[rightPos]) temp[curr++] = A[leftPos++];
-     	else {
-     	 	counts += (leftEnd - leftPos + 1); // ÄæĞòÊıÍ³¼Æ 
+ 	// åˆ†æ²»æ³•ä¸­çš„"æ²»"
+ 	int leftPos = left, leftEnd = mid, rightPos = mid + 1, rightEnd = right; // è®¾å®šæ•°ç»„çš„è¾¹ç•Œå˜é‡
+ 	int curr = left; // è®°å½•å½“å‰æ•°ç»„å…ƒç´ ä¸‹æ ‡
+ 	while (leftPos <= leftEnd && rightPos <= rightEnd) { // å°†æ‰€æŒ‡è¾ƒå°å…ƒç´ æ”¾å…¥tempæ•°ç»„ä¸­
+	    if (A[leftPos] <= A[rightPos]) temp[curr++] = A[leftPos++];
+     	    else {
+     	 	counts += (leftEnd - leftPos + 1); // é€†åºæ•°ç»Ÿè®¡ 
      	 	temp[curr++] = A[rightPos++];
-		}
+	    }
  	}
- 	while (leftPos <= leftEnd) temp[curr++] = A[leftPos++]; // ¿¼ÂÇµ½×óĞòÁĞÓĞÊ£ÓàÔªËØ
- 	while (rightPos <= rightEnd) temp[curr++] = A[rightPos++]; // ¿¼ÂÇµ½ÓÒĞòÁĞÓĞÊ£ÓàÔªËØ
- 	for (int i = right; i >= left; i--) { // ½«½á¹û¸´ÖÆ»ØAÊı×éÖĞ
-    	A[i] = temp[i];
+ 	while (leftPos <= leftEnd)  temp[curr++] = A[leftPos++];    // è€ƒè™‘åˆ°å·¦åºåˆ—æœ‰å‰©ä½™å…ƒç´ 
+ 	while (rightPos <= rightEnd)  temp[curr++] = A[rightPos++]; // è€ƒè™‘åˆ°å³åºåˆ—æœ‰å‰©ä½™å…ƒç´ 
+ 	for (int i = right; i >= left; i--) { 			    // å°†ç»“æœå¤åˆ¶å›Aæ•°ç»„ä¸­
+    	     A[i] = temp[i];
  	}
  	return;
 }
 
 int main() {
-	vector<int> ans;
-	int num = 0;
-	
-	while (cin >> num) {
-		if (num == 0) break;
-		int* digits = new int[num];
-		for (int index = 0; index < num; index++) {
-			cin >> digits[index];
-		}
-		
-		int* temp = new int[num];
-		MergeSort(digits, temp, 0, num - 1);
-		ans.push_back(counts);
-		counts = 0;
+    vector<int> ans;
+    int num = 0;
+    while (cin >> num) {
+	if (num == 0) break;
+	int* digits = new int[num];
+	for (int index = 0; index < num; index++) {
+		cin >> digits[index];
 	}
-	
-	for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
-		cout << *it << endl;
-	}
-	return 0;
+	int* temp = new int[num];
+	MergeSort(digits, temp, 0, num - 1);
+	ans.push_back(counts);
+	counts = 0;
+    }
+    for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
+	cout << *it << endl;
+    }
+    return 0;
 }
