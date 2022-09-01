@@ -1,26 +1,25 @@
-// ÓÃset½øĞĞÅÅÃû£¬map½øĞĞÓ³ÉäÓëÊä³ö 
-
+// ç”¨setè¿›è¡Œæ’åï¼Œmapè¿›è¡Œæ˜ å°„ä¸è¾“å‡º 
 #include <iostream>
-#include <map> 
+#include <map>
 #include <set>
 using namespace std;
 
 int main() {
-	int totalPeople = 0;  cin >> totalPeople;
-	int* digits = new int[totalPeople + 1];
-	for (int index = 1; index <= totalPeople; index++) cin >> digits[index];
-	set<int> myset;
+	int total = 0;  cin >> total; // totalå‚èµ›é€‰æ‰‹äººæ•° 
+	int* score = new int[total];
+	set<int> scoreRank;	// setå®¹å™¨æœ¬èº«æ˜¯æœ‰åºçš„ï¼Œæ•…å¯ä»¥å¯¹æˆç»©è¿›è¡Œæ’å 
+	for (int index = 0; index < total; index++) {
+		cin >> score[index];
+		scoreRank.insert(score[index]);
+	} 
 	map<int, int> scoreToRank;
-	for (int index = 1; index <= totalPeople; index++) {
-		myset.insert(digits[index]);
-	}
 	int rank = 1;
-	for (set<int>::reverse_iterator it = myset.rbegin(); it != myset.rend(); it++) { // ×¢ÒâÕı·´Ïòµü´úÆ÷Ãû³Æ²»Í¬ 
-		scoreToRank.insert(pair<int, int>(*it, rank));
+	for (set<int>::reverse_iterator it = scoreRank.rbegin(); it != scoreRank.rend(); it++) {
+		scoreToRank.insert(pair<int, int>(*it, rank)); // å°†å‚èµ›é€‰æ‰‹æˆç»©è‡ªåŠ¨è½¬åŒ–ä¸ºç›¸åº”çš„æ’å 
 		rank++;
 	}
-	for (int index = 1; index <= totalPeople; index++) {
-		cout << scoreToRank[digits[index]] << " ";
+	for (int index = 0; index < total; index++) {
+		cout << scoreToRank[score[index]] << " "; // è¾“å‡ºé€‰æ‰‹å¯¹åº”çš„æ’å 
 	}
 	return 0;
-} 
+}
