@@ -1,6 +1,6 @@
-// ·½·¨£»±¶ÊıÅĞ¶ÏÓë×Ö·û´®²éÕÒÅĞ¶ÏÏà½áºÏ
-// ÓÃvector<int>ÈİÆ÷´æ´¢ËùÓĞ´ğ°¸
-// ÄÑµãÔÚÓÚ°Ñint×ª»¯Îªstring 
+// æ–¹æ³•ï¼›å€æ•°åˆ¤æ–­ä¸å­—ç¬¦ä¸²æŸ¥æ‰¾åˆ¤æ–­ç›¸ç»“åˆ
+// ç”¨vector<int>å®¹å™¨å­˜å‚¨æ‰€æœ‰ç­”æ¡ˆ
+// éš¾ç‚¹åœ¨äºæŠŠintè½¬åŒ–ä¸ºstring 
 
 #include <iostream>
 #include <string>
@@ -16,7 +16,7 @@ string Transfer(stringstream &sstream, string &numString, int num) {
 	return numString;
 }
 
-// ´«ÒıÓÃ²ÎÊı±ØĞë·ûºÏconstÌõ¼ş 
+// ä¼ å¼•ç”¨å‚æ•°å¿…é¡»ç¬¦åˆconstæ¡ä»¶ 
 bool Judge(string s) {
 	if (s.find("7") != s.npos) return true;
 	else return false;
@@ -25,19 +25,16 @@ bool Judge(string s) {
 int main() {
 	int range = 0;  cin >> range;
 	vector<int> ans;	
-	bool result = false; // ½ÓÊÜº¯ÊıÅĞ¶¨ÊÇ·ñº¬ÓĞnµÄ½á¹û 
-	stringstream sstream; 	string numString; // stringstreamÊÇÒ»¸ö×Ö·û´®Àà 
-		
+	bool result = false; // æ¥å—å‡½æ•°åˆ¤å®šæ˜¯å¦å«æœ‰nçš„ç»“æœ 
+	stringstream sstream; 	string numString; // stringstreamæ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²ç±» 
 	for (int num = 7; num <= range; num++) {
 		if (num % 7 == 0) {
 			ans.push_back(num);
 			continue; 
 		}
-		
 		result = Judge(Transfer(sstream, numString, num));
 		if (result) ans.push_back(num);
 	}
-	
 	for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
 		cout << *it << endl;
 	}
