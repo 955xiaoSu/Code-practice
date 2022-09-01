@@ -1,53 +1,56 @@
-// 将答案存储到vector<int>容器当中，采用归并算法排序并求逆序数，以空间换时间 
 #include <iostream>
 #include <vector>
+#include <string.h>
 using namespace std;
-int counts = 0;
+int count = 0; // 记录每一轮的逆序数
 
-// 归并排序的时间复杂度是nlogn。为什么呢？
-// 首先得递归logn次，其次每次合并的时间复杂度都是n，因为每个数字都会被遍历一遍  
-void MergeSort(int* A, int* temp, int left, int right) {
-    if (left == right) return; // 递归结束条件
- 	// 分治法中的"分"
- 	int mid = (left + right) / 2; 
- 	MergeSort(A, temp, left, mid);
- 	MergeSort(A, temp, mid + 1, right);
- 	// 分治法中的"治"
- 	int leftPos = left, leftEnd = mid, rightPos = mid + 1, rightEnd = right; // 设定数组的边界变量
- 	int curr = left; // 记录当前数组元素下标
- 	while (leftPos <= leftEnd && rightPos <= rightEnd) { // 将所指较小元素放入temp数组中
-	    if (A[leftPos] <= A[rightPos]) temp[curr++] = A[leftPos++];
-     	    else {
-     	 	counts += (leftEnd - leftPos + 1); // 逆序数统计 
-     	 	temp[curr++] = A[rightPos++];
-	    }
- 	}
- 	while (leftPos <= leftEnd)  temp[curr++] = A[leftPos++];    // 考虑到左序列有剩余元素
- 	while (rightPos <= rightEnd)  temp[curr++] = A[rightPos++]; // 考虑到右序列有剩余元素
- 	for (int i = right; i >= left; i--) { 			    // 将结果复制回A数组中
-    	     A[i] = temp[i];
- 	}
- 	return;
+// 功能：利用归并算法统计逆序数
+// 参数：原数组A，空的临时数组tmp，数组起始下标，数组终止下标
+// 返回值类型：None
+void MergeSort(int* A, int* tmp, int left, int right) {
+	if (left == right)  return;   // 递归终止条件
+	int mid = (left + right) / 2;
+	// 分治法中的“分”
+	MergeSort(A, tmp, left, mid);
+	MergeSort(A, tmp, mid + 1, right);
+	// 分治法中的“治”，此时数组分为各自有序的左右两个数组
+	// 逆序数为0的情况是，左数组最大元素比右数组最小元素小
+	int leftStart = left, leftEnd = mid, rightStart = mid + 1, rightEnd = right;
+	int curr = left;
+	while (leftStart <= leftEnd && rightStart <= rightEnd) {
+		if (A[leftStart] <= A[rightStart])  tmp[curr++] = A[leftStart++];
+		else {
+			count += leftEnd - leftStart + 1; // 当左数组元素大于右数组元素时，逆序数产生
+			tmp[curr++] = A[rightStart++];
+		}
+	}
+	while (leftStart <= leftEnd)  tmp[curr++] = A[leftStart++];    // 考虑到左数组有剩余元素
+	while (rightStart <= rightEnd)  tmp[curr++] = A[rightStart++]; // 考虑到右数组有剩余元素
+	for (int index = right; index >= left; index--) { // 将临时数组中的元素复制回原数组
+		A[index] = tmp[index];
+	}
+	return;
 }
 
 int main() {
-    vector<int> ans;
-    int num = 0;
-    while (cin >> num) {
-	if (num == 0) break;
-	int* digits = new int[num];
-	for (int index = 0; index < num; index++) {
-		cin >> digits[index];
+	vector<int> ans; // 记录答案的容器
+	int num = 0;     // 每组测试数据的个数
+	while (cin >> num) {
+		if (num == 0)  break;
+		int* digits = new int[num];
+		for (int index = 0; index < num; index++) {
+			cin >> digits[index];
+		}
+		int* tmp = new int[num];
+		memset(tmp, 0, sizeof(int) * num); // 将临时数组初始化为0
+		MergeSort(digits, tmp, 0, num - 1);
+		ans.push_back(count);
+		count = 0;
+		delete []tmp;
+		delete []digits;
 	}
-	int* temp = new int[num];
-	MergeSort(digits, temp, 0, num - 1);
-	ans.push_back(counts);
-	counts = 0;
-	delete []temp;
-	delete []digits;
-    }
-    for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
-	cout << *it << endl;
-    }
-    return 0;
+	for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
+		cout << *it << endl;
+	}
+	return 0;
 }
