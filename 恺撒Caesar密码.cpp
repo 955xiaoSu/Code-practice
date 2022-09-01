@@ -1,4 +1,4 @@
-// ÓÃstring½ÓÊÕÊäÈë£¬ÓÃvectorÈİÆ÷´æ´¢¸ù¾İ¹æÔò±ä»»ºóµÄ×Ö·û´®
+// ç”¨stringæ¥æ”¶è¾“å…¥ï¼Œç”¨vectorå®¹å™¨å­˜å‚¨æ ¹æ®è§„åˆ™å˜æ¢åçš„å­—ç¬¦ä¸²
 
 #include <iostream>
 #include <string>
@@ -23,14 +23,12 @@ void Transfer(string& s, vector<string>& ans) {
 int main() {
 	vector<string> ans;
 	string s;
-	
 	while (getline(cin, s)) {
 		if (s == "ENDOFINPUT") break;
 		getline(cin, s);
 		Transfer(s, ans);
 		getline(cin, s);
 	}
-	
 	for (vector<string>::iterator it = ans.begin(); it != ans.end(); it++) {
 		cout << *it << endl;
 	}
