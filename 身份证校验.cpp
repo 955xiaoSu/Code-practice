@@ -1,6 +1,6 @@
-// ÓÃÒ»¸övector´æ´¢´ğ°¸£¬ÓÃstringÀ´´¦ÀíÉí·İÖ¤ºÅ±È½Ï·½±ã
-// ÓÃÒ»¸öintÊı×é´æÈ¨ÖØ£¬ÓÃÒ»¸ömap´æĞ£ÑéÂë¶ÔÓ¦¹æÔò 
-// Ê×ÏÈÇóºÍ¡¢Æä´ÎËãÄ££¬×îºó¸ù¾İ¹æÔò²éÕÒĞ£ÑéÂë
+// ç”¨ä¸€ä¸ªvectorå­˜å‚¨ç­”æ¡ˆï¼Œç”¨stringæ¥å¤„ç†èº«ä»½è¯å·æ¯”è¾ƒæ–¹ä¾¿
+// ç”¨ä¸€ä¸ªintæ•°ç»„å­˜æƒé‡ï¼Œç”¨ä¸€ä¸ªmapå­˜æ ¡éªŒç å¯¹åº”è§„åˆ™ 
+// é¦–å…ˆæ±‚å’Œã€å…¶æ¬¡ç®—æ¨¡ï¼Œæœ€åæ ¹æ®è§„åˆ™æŸ¥æ‰¾æ ¡éªŒç 
 
 #include <iostream>
 #include <vector>
@@ -8,49 +8,42 @@
 #include <string>
 using namespace std;
 
-void Judge(string& s, int weight[], map<int, char>& rule, vector<int>& ans) {
+void Judge(string& s, int* weight, map<int, char>& rule, vector<int>& ans) {
 	int sum = 0;
-	
-	// ÇóºÍ 
-	for (int index = 0; index <= 16; index++) {
+	for (int index = 0; index <= 16; index++) { // æ±‚å’Œ 
 		sum += (s[index] - '0') * weight[index];
 	}
-	
-	// È¡Ä£ 
-	sum = sum % 11;
-	
-	// ¸ù¾İ¹æÔòµÃ³öÕıÈ·µÄĞ£ÑéÂë
+	sum = sum % 11; // å–æ¨¡ 
+	// æ ¹æ®è§„åˆ™å¾—å‡ºæ­£ç¡®çš„æ ¡éªŒç ï¼Œå¹¶æ ¡éªŒ 
 	char checkCode = ' ';
 	checkCode = rule[sum];
-	
 	if (checkCode == s[17])  ans.push_back(1);
 	else  ans.push_back(0);
 	return;
 }
 
+void InitRule(map<int, char>& rule) {
+	int module[11];
+	for (int index = 0; index <= 10; index++)  module[index] = index;
+	char checkCode[] = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
+	for (int times = 0; times <= 10; times++) {
+		rule.insert(pair<int, char>(module[times], checkCode[times]));
+	} 
+	return;
+}
+
 int main() {
 	vector<int> ans;
-	int weight[17] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}; // ¶ÔÓ¦Î»ÖÃµÄÈ¨ÖØ 
+	int weight[17] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}; // å¯¹åº”ä½ç½®çš„æƒé‡ 
 	map<int, char> rule;
-	rule.insert(pair<int, char>(0, '1'));
-	rule.insert(pair<int, char>(1, '0'));
-	rule.insert(pair<int, char>(2, 'X'));
-	rule.insert(pair<int, char>(3, '9'));
-	rule.insert(pair<int, char>(4, '8'));
-	rule.insert(pair<int, char>(5, '7'));
-	rule.insert(pair<int, char>(6, '6'));
-	rule.insert(pair<int, char>(7, '5'));
-	rule.insert(pair<int, char>(8, '4'));
-	rule.insert(pair<int, char>(9, '3'));
-	rule.insert(pair<int, char>(10, '2'));
-	
-	// Ğ£ÑéÉí·İÖ¤ 
+	InitRule(rule); // å¯¹æ ¡éªŒè§„åˆ™è¿›è¡Œåˆå§‹åŒ–
+
+	// æ ¡éªŒèº«ä»½è¯ 
 	string s;
 	while (cin >> s) {
 		if (s == "-1") break;
 		Judge(s, weight, rule, ans);	
 	}
-	
 	for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
 		cout << *it << endl;
 	}
