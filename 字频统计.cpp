@@ -1,4 +1,4 @@
-// Öğ¸öÅĞ¶Ï£¬½«´ğ°¸´æ´¢µ½vector<int>
+// é€ä¸ªåˆ¤æ–­ï¼Œå°†ç­”æ¡ˆå­˜å‚¨åˆ°vector<int>
 
 #include <iostream>
 #include <vector>
@@ -9,12 +9,10 @@ int main() {
 	int len = 0;
 	string s;
 	vector<int> counts;
-	
 	while (cin >> len) {
 		if (len == 0) break;
 		cin >> s;
-		
-		// ×Ö·ûÓë×Ö·û´®Óë¶¨½ç·û¡¢Õ¼Î»·û¡¢'\0'µÄÇø±ğ 
+		// å­—ç¬¦ä¸å­—ç¬¦ä¸²ä¸å®šç•Œç¬¦ã€å ä½ç¬¦ã€'\0'çš„åŒºåˆ« 
 		int recordAB = 0, recordBA = 0;
 		for (int index = 0; index < len - 1; index++) {
 			if (s[index] == 'a' && s[index + 1] == 'b')
@@ -25,7 +23,6 @@ int main() {
 		}
 		counts.push_back(recordAB - recordBA);
 	}
-	
 	for (vector<int>::iterator it = counts.begin(); it != counts.end(); it++) {
 		cout << *it << endl;
 	}
