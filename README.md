@@ -1,1 +1,1 @@
-# This is HNUer's summer homework, problems here come from CG system and CCF official website.
+This is a HNUer's summer homework. Problems here come from CG system and CCF official website.
