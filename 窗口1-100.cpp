@@ -1,5 +1,5 @@
-// Ê¹ÓÃÊı×é±©Á¦Ä£ÄâÆ½ÃæÉÏµÄµã 
-// ×¢ÒâÃüÃû¡£±ê¼Ç×ø±êÊ±¿ÉÊ¹ÓÃÊı×é£¬Ê¹¹ı³ÌÇåÎú 
+// ä½¿ç”¨æ•°ç»„æš´åŠ›æ¨¡æ‹Ÿå¹³é¢ä¸Šçš„ç‚¹ 
+// æ³¨æ„å‘½åã€‚æ ‡è®°åæ ‡æ—¶å¯ä½¿ç”¨æ•°ç»„ï¼Œä½¿è¿‡ç¨‹æ¸…æ™° 
 #include <iostream>
 using namespace std;
 
@@ -9,8 +9,8 @@ int index[11][4] = {0};
 int judgeAndAssign(const int x, const int y) {
 	int ans = screen[x][y];
 	if (ans == 0) return 0;
-	for (int j = index[ans][0]; j <= index[ans][2]; j++) { // ¶ÔÓ¦ÇøÓòÓĞĞ§µÄÇé¿öÏÂÖØĞÂ¸³Öµ
-														   // Ê¹µÃ×î¶¥²ã´°¿ÚÇøÓòÓëÆä´°¿ÚÊı¶ÔÓ¦ 
+	for (int j = index[ans][0]; j <= index[ans][2]; j++) { // å¯¹åº”åŒºåŸŸæœ‰æ•ˆçš„æƒ…å†µä¸‹é‡æ–°èµ‹å€¼
+							       // ä½¿å¾—æœ€é¡¶å±‚çª—å£åŒºåŸŸä¸å…¶çª—å£æ•°å¯¹åº” 
 		for (int k = index[ans][1]; k <= index[ans][3]; k++) {
 			screen[j][k] = ans;  
 		}
@@ -25,7 +25,7 @@ int main() {
 		cin >> index[i][0] >> index[i][1] >> index[i][2] >> index[i][3];
 		for (int j = index[i][0]; j <= index[i][2]; j++) {
 			for (int k = index[i][1]; k <= index[i][3]; k++) {
-				screen[j][k] = i; // ½«´°¿ÚÊı¸³Öµ¸øÆ½ÃæÉÏµÄ×ø±ê 
+				screen[j][k] = i; // å°†çª—å£æ•°èµ‹å€¼ç»™å¹³é¢ä¸Šçš„åæ ‡ 
 			}
 		}
 	}
