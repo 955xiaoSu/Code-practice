@@ -40,6 +40,3 @@ int main() {
 	cout << digit[matrix][matrix];
 	return 0;
 }
-		
-
-
