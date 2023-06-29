@@ -1,0 +1,4 @@
+"main.obj",
+"..\示例工程\八位数码管滚动显示工程（BSP版本）\八位数码管滚动显示工程\八位数码管滚动显示_BSP版\source\STCBSP_V3.6.LIB" 
+TO "music" 
+RAMSIZE(256) 

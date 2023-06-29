@@ -1,0 +1,99 @@
+C51 COMPILER V9.51   MAIN                                                                  06/28/2023 16:00:35 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Downloadss\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include "../source/STC15F2K60S2.H"        //±ØÐë¡£
+   2          #include "../source/sys.H"                 //±ØÐë¡£
+   3          #include "../source/displayer.H" 
+   4          #include "../source/hall.H"
+   5          
+   6          
+   7          code unsigned long SysClock=11059200;         //±ØÐë¡£¶¨ÒåÏµÍ³¹¤×÷Ê±ÖÓÆµÂÊ(Hz)£¬ÓÃ»§±ØÐëÐÞ¸Ä³ÉÓëÊµ¼Ê¹¤×÷Æµ
+             -ÂÊ£¨ÏÂÔØÊ±Ñ¡ÔñµÄ£©Ò»ÖÂ
+   8          #ifdef _displayer_H_                          //ÏÔÊ¾Ä£¿éÑ¡ÓÃÊ±±ØÐë¡££¨ÊýÂë¹ÜÏÔÊ¾ÒëÂë±í£¬ÓÃ‘ô¿ÉÐÞ¸Ä¡¢Ôö¼ÓµÈ
+             -£© 
+   9          code char decode_table[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x00,0x08,0x40,0x01, 0x41, 0x4
+             -8, 
+  10                          /* ÐòºÅ:   0   1    2    3    4     5    6    7   8    9   10    11   12   13    14     15    
+             - */
+  11                          /* ÏÔÊ¾:   0   1    2    3    4     5    6    7   8    9  (ÎÞ)   ÏÂ-  ÖÐ-  ÉÏ-  ÉÏÖÐ-  ÖÐÏ
+             -Â-   */  
+  12                                   0x3f|0x80,0x06|0x80,0x5b|0x80,0x4f|0x80,0x66|0x80,0x6d|0x80,0x7d|0x80,0x07|0x80,0x
+             -7f|0x80,0x6f|0x80 };  
+  13                       /* ´øÐ¡Êýµã     0         1         2         3         4         5         6         7      
+             -   8         9        */
+  14          #endif
+  15          
+  16          unsigned char led = 0x0f;
+  17          unsigned char flag = 0x00;
+  18          
+  19          void my100msCallBack() {
+  20   1          if (flag) {
+  21   2              if (led == 0x87)  led = 0x0f;
+  22   2              else if (led == 0xc3)  led = 0x87;
+  23   2              else if (led == 0xe1)  led = 0xc3;
+  24   2              else if (led == 0xf0)  led = 0xe1;
+  25   2              else  led = led<<1;
+  26   2          }
+  27   1      
+  28   1          LedPrint(led);
+  29   1      }
+  30          
+  31          void myHallCallBack(){ 
+  32   1          char act = GetHallAct(); // Ò»´ÎÊÂ¼þÖ»ÄÜ·µ»ØÒ»¸ö²éÑ¯½á¹
+  33   1                                   // ÊÂ¼þ½á¹û±äÎª enumEventHall
+  34   1        
+  35   1          // ´Å³¡½Ó½ü£¬´òÓ¡1£¬¿ªÊ¼Á÷Ë®µÆ×÷Òµ
+  36   1          // ´òÓ¡ 1£¬±íÃ÷ÕýÔÚ×÷Òµ
+  37   1          if (act == enumHallGetClose) {
+  38   2              Seg7Print(1, 10, 10, 10, 10, 10, 10, 10); 
+  39   2              flag = 0x01;
+  40   2          }
+  41   1          // ´Å³¡Ô¶Àë£¬´òÓ¡0£¬Í£Ö¹Á÷Ë®µÆ×÷Òµ
+  42   1          else if (act == enumHallGetAway) {
+  43   2              Seg7Print(0, 10, 10, 10, 10, 10, 10, 10); 
+  44   2              flag = 0x00;
+  45   2          }
+  46   1      }
+  47          
+  48          void main() { 
+C51 COMPILER V9.51   MAIN                                                                  06/28/2023 16:00:35 PAGE 2   
+
+  49   1          DisplayerInit();  
+  50   1          HallInit();
+  51   1        
+  52   1          SetDisplayerArea(0,7);  
+  53   1          Seg7Print(10, 10, 10, 10, 10, 10, 10, 10);  
+  54   1          LedPrint(led);
+  55   1        
+  56   1          SetEventCallBack(enumEventHall, myHallCallBack);
+  57   1          SetEventCallBack(enumEventSys100mS, my100msCallBack);
+  58   1        
+  59   1          // ³õÊ¼»¯²Ù×÷ÏµÍ³
+  60   1          MySTC_Init();     
+  61   1          while (1) { 
+  62   2              MySTC_OS();    
+  63   2          }              
+  64   1      }                
+  65          
+  66          
+  67          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    198    ----
+   CONSTANT SIZE    =     30    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

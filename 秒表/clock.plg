@@ -1,0 +1,185 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\86188\Desktop\Prog\√Î±Ì\clock.uvproj
+Project File Date:  06/28/2023
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(205): error C141: syntax error near 'sbit'
+main.c(206): error C141: syntax error near 'sbit'
+main.c(207): error C141: syntax error near 'unsigned'
+main.c(208): error C141: syntax error near '}'
+main.c(209): error C141: syntax error near 'unsigned'
+main.c(209): error C183: unmodifiable lvalue
+main.c(210): error C141: syntax error near 'char'
+main.c(211): error C141: syntax error near 'char'
+main.c(212): error C141: syntax error near 'unsigned'
+main.c(213): error C141: syntax error near 'char'
+main.c(214): error C141: syntax error near 'int'
+main.c(215): error C141: syntax error near 'int'
+main.c(215): error C141: syntax error near '{'
+main.c(215): error C141: syntax error near '}'
+main.c(216): error C141: syntax error near 'unsigned'
+main.c(217): error C141: syntax error near 'unsigned'
+main.c(218): error C141: syntax error near 'unsigned'
+main.c(219): error C141: syntax error near 'unsigned'
+main.c(220): error C141: syntax error near 'unsigned'
+main.c(221): error C141: syntax error near 'unsigned'
+main.c(222): error C141: syntax error near 'unsigned'
+main.c(223): error C141: syntax error near 'unsigned'
+main.c(224): error C141: syntax error near 'void'
+main.c(225): error C141: syntax error near '{'
+main.c(236): error C141: syntax error near 'void'
+main.c(236): error C141: syntax error near '{'
+main.c(243): error C141: syntax error near 'void'
+main.c(243): error C141: syntax error near '{'
+main.c(254): error C141: syntax error near 'void'
+Target not created
+Rebuild target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETADC?ADC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=43.0 xdata=152 code=3132
+"clock" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(17): error C231: 'second_1': redefinition
+main.c(17): error C231: 'second_2': redefinition
+main.c(30): error C202: 'my1msCallBack': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(30): error C202: 'my1msCallBack': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(45): error C202: 'my1msCallBack': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEDPRINT?DISPLAYER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=45.7 xdata=122 code=2493
+"clock" - 0 Error(s), 7 Warning(s).
+Rebuild target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEDPRINT?DISPLAYER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=45.7 xdata=122 code=2493
+creating hex file from "clock"...
+"clock" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=45.7 xdata=122 code=2498
+creating hex file from "clock"...
+"clock" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=45.7 xdata=122 code=2536
+creating hex file from "clock"...
+"clock" - 0 Error(s), 6 Warning(s).
+Rebuild target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=45.7 xdata=122 code=2536
+creating hex file from "clock"...
+"clock" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETULTRASONIC?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETBEEPTIMER?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SETCCP0?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CLRBEEPPIN?SYS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GETSYSPERFORMANCE?SYS
+Program Size: data=45.7 xdata=122 code=2540
+creating hex file from "clock"...
+"clock" - 0 Error(s), 6 Warning(s).
