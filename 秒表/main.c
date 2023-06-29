@@ -73,21 +73,21 @@ void myKeyCallBack() {
 }
 
 void main() { 
-  	DisplayerInit();  
+		DisplayerInit();  
 		KeyInit();
 		
 		SetDisplayerArea(0,7);	
 		Seg7Print(0, 12, 0, 0, 12, 0, 0, 0); // 初始化打印”0-00-000“
 		LedPrint(led);
 		
-    SetEventCallBack(enumEventSys1mS, my1msCallBack);
+		SetEventCallBack(enumEventSys1mS, my1msCallBack);
 		SetEventCallBack(enumEventSys1S, my1sCallBack);	
 		SetEventCallBack(enumEventKey, myKeyCallBack);
 	
-	  // 初始化操作系统
-    MySTC_Init();	    
-	  while (1) { 
-		    MySTC_OS();    
+		// 初始化操作系统
+		MySTC_Init();	    
+		while (1) { 
+				MySTC_OS();    
 		}	             
 }                
 
