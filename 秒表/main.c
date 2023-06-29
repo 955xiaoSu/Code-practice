@@ -1,6 +1,7 @@
 #include "../source/STC15F2K60S2.H"        //必须。
 #include "../source/sys.H"                 //必须。
 #include "../source/displayer.H" 
+#include "../source/key.h"
 
 code unsigned long SysClock=11059200;         //必须。定义系统工作时钟频率(Hz)，用户必须修改成与实际工作频率（下载时选择的）一致
 #ifdef _displayer_H_                          //显示模块选用时必须。（数码管显示译码表，用戶可修改、增加等） 
@@ -23,52 +24,65 @@ unsigned char second_2 = 0;
 unsigned char minute = 0;
 
 unsigned char led = 0x00; // 十进制计数
+unsigned char flag = 0x00;
 
 void my1msCallBack() {
-		millisecond_3 += 1;
+		if (!flag) {
+			millisecond_3 += 1;
 	
-		if (millisecond_3 >= 10) {
-				millisecond_3 = 0;
-				millisecond_2 += 1;
+			if (millisecond_3 >= 10) {
+					millisecond_3 = 0;
+					millisecond_2 += 1;
+			}
+			if (millisecond_2 >= 10) {
+					millisecond_2 = 0;
+					millisecond_1 += 1;
+			}
+			if (millisecond_1 >= 10) 
+					millisecond_1 = 0;
 		}
-		if (millisecond_2 >= 10) {
-				millisecond_2 = 0;
-				millisecond_1 += 1;
-		}
-		if (millisecond_1 >= 10) 
-				millisecond_1 = 0;
-		
 		Seg7Print(minute, 12, second_1, second_2, 12, millisecond_1, millisecond_2, millisecond_3);
 }
 
 void my1sCallBack() {
-		second_2 += 1;
+		if (!flag) {	
+				second_2 += 1;
 		
-		if (second_2 >= 10) {
-				second_2 = 0;
-				second_1 += 1;
+			  if (second_2 >= 10) {
+						second_2 = 0;
+						second_1 += 1;
+				}
+				if (second_1 >= 6) {
+						second_1 = 0;
+						minute += 1;
+				}
+				if (minute >= 10) {
+						minute = 0;
+						led += 1;
+				}
 		}
-		if (second_1 >= 6) {
-				second_1 = 0;
-				minute += 1;
-		}
-		if (minute >= 10) {
-				minute = 0;
-			  led += 1;
-		}		
 		
 		LedPrint(led);
 }
 
+void myKeyCallBack() {
+		unsigned char k;
+		k = GetKeyAct(enumKey1);
+	  if (k == enumKeyPress) 
+			  flag = ~flag;
+}
+
 void main() { 
   	DisplayerInit();  
-	
+		KeyInit();
+		
 		SetDisplayerArea(0,7);	
 		Seg7Print(0, 12, 0, 0, 12, 0, 0, 0); // 初始化打印”0-00-000“
 		LedPrint(led);
 		
     SetEventCallBack(enumEventSys1mS, my1msCallBack);
 		SetEventCallBack(enumEventSys1S, my1sCallBack);	
+		SetEventCallBack(enumEventKey, myKeyCallBack);
 	
 	  // 初始化操作系统
     MySTC_Init();	    
