@@ -1,5 +1,7 @@
-This is a HNUer's summer homework. Problems here come from CG system and CCF official website.
+This repository is used to record HNUer's summer homework. 
 
-You can check **CCF / CSP** branch to get source code.
+**What can you get from here?**
 
-You can also get **MCU programs** source code from **MCU** branch.(Which may help you in your Sophomore Summer Semester）
+1. Check **CCF / CSP** branch to get source code.(Programming problems here come from CG system and CCF official website)
+
+2. Get **MCU programs** source code from **MCU** branch.(Which may help you in your Sophomore Summer Semester）
