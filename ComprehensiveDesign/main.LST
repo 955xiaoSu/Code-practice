@@ -1,0 +1,203 @@
+C51 COMPILER V9.51   MAIN                                                                  07/27/2023 12:00:34 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Downloadss\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include "../source/STC15F2K60S2.H"        
+   2          #include "../source/sys.H"                 
+   3          #include "../source/displayer.H" 
+   4          #include "../source/music.h"
+   5          #include "../source/beep.h"
+   6          #include "../source/Vib.h"
+   7          #include "../source/uart1.h"
+   8          #include "../source/Key.H"
+   9          #include "../source/adc.h"
+  10          //#include "../source/EXT.h"
+  11          
+  12          code unsigned long SysClock=11059200;         //±ØÐë¡£¶¨ÒåÏµÍ³¹¤×÷Ê±ÖÓÆµÂÊ(Hz)£¬ÓÃ»§±ØÐëÐÞ¸Ä³ÉÓëÊµ¼Ê¹¤×÷Æµ
+             -ÂÊ£¨ÏÂÔØÊ±Ñ¡ÔñµÄ£©Ò»ÖÂ
+  13          #ifdef _displayer_H_                          //ÏÔÊ¾Ä£¿éÑ¡ÓÃÊ±±ØÐë¡££¨ÊýÂë¹ÜÏÔÊ¾ÒëÂë±í£¬ÓÃ‘ô¿ÉÐÞ¸Ä¡¢Ôö¼ÓµÈ
+             -£© 
+  14          code char decode_table[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x00,0x08,0x40,0x01, 0x41, 0x4
+             -8, 0x31,
+  15                          /* ÐòºÅ:   0   1    2    3    4     5    6    7   8    9   10    11   12   13    14     15    
+             -16 */
+  16                          /* ÏÔÊ¾:   0   1    2    3    4     5    6    7   8    9  (ÎÞ)   ÏÂ-  ÖÐ-  ÉÏ-  ÉÏÖÐ-  ÖÐÏ
+             -Â-  ¾µÏñ7 */  
+  17                                   0x3f|0x80,0x06|0x80,0x5b|0x80,0x4f|0x80,0x66|0x80,0x6d|0x80,0x7d|0x80,0x07|0x80,0x
+             -7f|0x80,0x6f|0x80 };  
+  18                       /* ´øÐ¡Êýµã     0         1         2         3         4         5         6         7      
+             -   8         9        */
+  19          #endif
+  20          
+  21          /*
+  22              ÊýÂë¹Ü¶ÎÑ¡£¬´Ó×óÖÁÓÒ
+  23              1£ºÐ¡Êýµã
+  24              2£ºÖÐ
+  25              3£º×óÉÏ
+  26              4£º×óÏÂ
+  27              5£ºÏÂ
+  28              6£ºÓÒÏÂ
+  29              7£ºÓÒÉÏ
+  30              8£ºÉÏ
+  31          
+  32              ±àÂë¹æ·¶£ºÍ³Ò»Ê¹ÓÃ Tab
+  33              ±à³ÌË¼Â·£ºÀûÓÃ´®¿ÚÍ¨ÐÅ£¬ÊµÏÖ PC ÓëÏÂÎ»»úÖ®¼äµÄÍ¨ÐÅ
+  34           */
+  35          
+  36          
+  37          unsigned char led = 0x05;
+  38          unsigned char flag = 0x00;
+  39              
+  40          
+  41          unsigned char hall_of_fame[] = {0x31, 0x20, 0x27, 0x20, 0x31, 0x20, 0x26, 0x20};
+  42          /*
+  43                                          0x31, 0x20, 0x23, 0x20, 0x31, 0x20, 0x24, 0x20,
+  44                                          0x31, 0x20, 0x24, 0x20, 0x34, 0x20, 0x24, 0x20,
+  45                                          0x31, 0x20, 0x24, 0x20, 0x34, 0x20, 0x24, 0x20,
+  46                                          0x33, 0x20, 0x31, 0x20, 0x34, 0x20, 0x31, 0x20,
+  47                                          0x35, 0x20, 0x31, 0x20, 0x32, 0x20, 0x31, 0x20,
+  48                                          0x32, 0x20, 0x25, 0x20, 0x35, 0x20, 0x25, 0x20,
+C51 COMPILER V9.51   MAIN                                                                  07/27/2023 12:00:34 PAGE 2   
+
+  49                                          0x32, 0x20, 0x25, 0x20, 0x35, 0x20, 0x25, 0x20};
+  50          */
+  51          
+  52          unsigned char rxd[3]={0xaa, 0x55, 0x00}; 
+  53          
+  54          void myUart1RxdCallBack(const unsigned char signal) { 
+  55   1          rxd[2] = signal;
+  56   1          Uart1Print(&rxd, sizeof(rxd));
+  57   1      }
+  58          
+  59          void myVibCallBack() {
+  60   1          if (GetVibAct() == enumVibQuake)
+  61   1              myUart1RxdCallBack(0x01);
+  62   1      }
+  63          
+  64          void myKeyCallBack() {
+  65   1          if (GetKeyAct(enumKey1) == enumKeyPress) 
+  66   1              myUart1RxdCallBack(0x03);
+  67   1      }
+  68          
+  69          unsigned char index = 0;
+  70          unsigned char digit[4] = {0, 0, 0, 0};
+  71          
+  72          void myKNCallBack() {
+  73   1          char up = GetAdcNavAct(enumAdcNavKeyUp);
+  74   1          char down = GetAdcNavAct(enumAdcNavKeyDown);
+  75   1          char right = GetAdcNavAct(enumAdcNavKeyRight);
+  76   1          char left = GetAdcNavAct(enumAdcNavKeyLeft);
+  77   1          char center = GetAdcNavAct(enumAdcNavKeyCenter);
+  78   1      
+  79   1          // µ¼º½ÉÏ¼ü±»ÞôÏÂ
+  80   1          if (up == enumKeyPress) 
+  81   1              digit[index]++;
+  82   1            
+  83   1          // µ¼º½ÏÂ¼ü±»ÞôÏÂ
+  84   1          if (down == enumKeyPress) 
+  85   1              digit[index]--;
+  86   1          
+  87   1          // µ¼º½×ó¼ü±»ÞôÏÂ
+  88   1          if (left == enumKeyPress) 
+  89   1              index--;
+  90   1          
+  91   1          // µ¼º½ÓÒ¼ü±»ÞôÏÂ
+  92   1          if (right == enumKeyPress) 
+  93   1              index++;
+  94   1          
+  95   1          // µ¼º½ÖÐÐÄ¼ü±»ÞôÏÂ
+  96   1          if (center == enumKeyPress) {
+  97   2              if (digit[0] == 1 && digit[1] == 9 && digit[2] == 9 && digit[3] == 6) {
+  98   3                  myUart1RxdCallBack(0x08);
+  99   3                  digit[0] = digit[1] = digit[2] = digit[3] = 10;
+ 100   3              }
+ 101   2              else {
+ 102   3                  myUart1RxdCallBack(0x07);
+ 103   3                  digit[0] = digit[1] = digit[2] = digit[3] = 0;
+ 104   3              } 
+ 105   2          }
+ 106   1      }
+ 107          
+ 108          void myRopCallBack() {
+ 109   1          struct_ADC adc_result;
+ 110   1          adc_result = GetADC();
+C51 COMPILER V9.51   MAIN                                                                  07/27/2023 12:00:34 PAGE 3   
+
+ 111   1          
+ 112   1          Seg7Print(10, 10, 10, 10, digit[0], digit[1], digit[2], digit[3]); // ´òÓ¡Êý×Öµ½ÊýÂë¹Ü
+ 113   1      
+ 114   1          // ÒÔ´ËÅÐ¶ÏÊÖÎæ×¡ÁË¹âÃôµç×è£¬´ú±íÀúÊ·ÎÊ´ð¹Ø¿¨ÖÐ¹´Ñ¡´íÎó
+ 115   1          // ãÐÖµÐèÒª¸ù¾Ý»·¾³Ìõ¼þ×÷ÏàÓ¦µÄµ÷Õû£¬Ã¿´ÎÑ¡ÔñµÄÊ±¼ä¿ØÖÆÔÚ 1s ×óÓÒ
+ 116   1          if (adc_result.Rop < 10) 
+ 117   1              myUart1RxdCallBack(0x09);
+ 118   1          
+ 119   1          // ÒÔ´ËÅÐ¶ÏÓÃÁËÊÖµçÍ²Ö®ÀàµÄ¹¤¾ß£¬´ú±íÀúÊ·ÎÊ´ð¹Ø¿¨ÖÐ¹´Ñ¡ÕýÈ·
+ 120   1          if (adc_result.Rop > 200) 
+ 121   1              myUart1RxdCallBack(0x0a); 
+ 122   1      }
+ 123          
+ 124          /* ÎªÁËÁ¬¹á£¬ÉáÆú³¬Éù²¨Ä£¿é
+ 125          void mytUltraSonicCallBack() {
+ 126              int distance = GetUltraSonic();
+ 127              Seg7Print(10, 10, 10, 10, distance/1000, (distance%1000)/100, (distance%100)/10, distance%10);  
+ 128              if (distance < 10)
+ 129                  myUart1RxdCallBack(0x02);
+ 130          }
+ 131          */
+ 132          
+ 133          void main() { 
+ 134   1          // ³õÊ¼»¯Ä£¿é
+ 135   1          DisplayerInit();  
+ 136   1          BeepInit();
+ 137   1          MusicPlayerInit();
+ 138   1          VibInit();
+ 139   1          KeyInit();
+ 140   1          AdcInit(ADCexpEXT); 
+ 141   1          Uart1Init(1200);
+ 142   1          // EXTInit(enumEXTUltraSonic); ÎªÁËÁ¬¹á£¬ÉáÆú³¬Éù²¨Ä£¿é
+ 143   1      
+ 144   1          SetDisplayerArea(0,7);  
+ 145   1        
+ 146   1          // Õ¹Ê¾ 8¡¢24 ºÅÇòÒÂ£¬5 ´Î×Ü¹Ú¾ü
+ 147   1          // ÑÝ×àÒ»Ð¡²¿·Ö¡¶Hall of fame¡·
+ 148   1          Seg7Print(8, 10, 7, 16, 0, 10, 2, 4);  
+ 149   1          LedPrint(led);
+ 150   1          SetMusic(167, 0xFA, hall_of_fame, 8, enumMscNull);
+ 151   1          SetPlayerMode(enumModePlay); 
+ 152   1        
+ 153   1          SetEventCallBack(enumEventVib, myVibCallBack); // ½øÈëÓÎÏ·¹Ø¿¨
+ 154   1          SetEventCallBack(enumEventKey, myKeyCallBack); // ·þÎñÓÚÊÖËÙ¹Ø¿¨
+ 155   1          SetEventCallBack(enumEventNav, myKNCallBack);  // ·þÎñÓÚ²ÂÊý×Ö¹Ø¿¨
+ 156   1          SetEventCallBack(enumEventSys1S, myRopCallBack); // ·þÎñÓÚ²ÂÊý×Ö¹Ø¿¨ & ÀúÊ·ÎÊ´ð¹Ø¿¨
+ 157   1          // SetEventCallBack(enumEventSys1S, mytUltraSonicCallBack); ÎªÁËÁ¬¹á£¬ÉáÆú³¬Éù²¨Ä£¿é
+ 158   1          
+ 159   1          // ³õÊ¼»¯²Ù×÷ÏµÍ³
+ 160   1          MySTC_Init();     
+ 161   1          while (1) { 
+ 162   2              MySTC_OS();    
+ 163   2          }              
+ 164   1      }                
+ 165          
+ 166          
+ 167          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    387    ----
+   CONSTANT SIZE    =     31    ----
+C51 COMPILER V9.51   MAIN                                                                  07/27/2023 12:00:34 PAGE 4   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
