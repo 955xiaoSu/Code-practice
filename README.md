@@ -1,10 +1,11 @@
-This repository is used to record HNU CSer's homework. 
+In this semester, I took part in a class named Artificial Intelligence System Security.
+However, The teacher seems not interested in this subject, so we can learn little from him.
+As above, I read a book about AI in National Day to gain some basic concepts. **It's time to practice.**
 
-**What can you get from here?**
+So I found some resource and decieded to create this branch to record my learning process.
 
-1. Check **CCF / CSP** branch to get source code.(Programming problems here come from CG system and CCF official website)
-
-2. Get **MCU programs** source code from **MCU** branch.(Which may help you in your Sophomore Summer Semester）
-
-3. **Software** branch has all kinds of resource you need if you are taking Ms. Sun Jianhua’s software security testing course.(Which will be updated in next few months)
-
+Reference are listed below:
+1. [Introduction to this course](https://csdiy.wiki/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/CS188/);
+2. [Course site](https://inst.eecs.berkeley.edu/~cs188/fa22/);
+3. [Course project](https://inst.eecs.berkeley.edu/~cs188/fa18/project0.html);
+4. [Gradescope](https://www.gradescope.com/courses/33660).
