@@ -16,3 +16,4 @@ Target: 25 slides & 11 HW & 5 Projects
 
 ### Progress in sync:
 1. HW0 & Project0 done in 0ct 15;
+1. HW1 done in 0ct 31;
