@@ -1,4 +1,4 @@
-This repository is used to record HNU CSer's homework. 
+This repo is used to record some assignments of HNU CSer. 
 
 **What can you get from here?**
 
