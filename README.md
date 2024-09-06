@@ -1,8 +1,8 @@
-This repo is used to record some assignments of HNU CSer. 
+This repository contains assignments from HNU CS students.
 
-**What can you get from here?**
-
-1. Check **CCF / CSP** branch to get source code.(Programming problems here come from CG system and CCF official website)
-2. Get **MCU programs** source code from **MCU** branch.(Which may help you in your Sophomore Summer Semester）
-3. **Software** branch has all kinds of resource you need if you are taking Ms. Sun Jianhua’s software security testing course.
-4. ~~**CS 188** branch record CS 188 course learning process about AI.~~
+**What can you find here?**
+1. Check the **CCF & CSP** branch for source code. (Programming problems are sourced from the CG system and the CCF official website.)
+2. Access **MCU** programs in the MCU branch. (These may be helpful during your Sophomore Summer Semester.)
+3. The **Software** branch provides various resources if you're taking Ms. Sun Jianhua's Software Security Testing course.
+4. ~~The CS 188 branch documents the learning process of the AI-focused CS 188 course.~~
+5. The **riscv-cpu** branch contains the code and report you'll need if you choose Wu Qiang’s Micro System Design course in your Junior Year Mini-Semester.
