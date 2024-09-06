@@ -1,14 +1,14 @@
-请在查看 `report.pdf` 与 `ics2024.tar.gz` 之前，确保看过以下文档：
+Before reviewing `report.pdf` and `ics2024.tar.gz`, please make sure you've gone through the following documents:
 1. [南大PA常见问题（FAQ）](https://ysyx.oscc.cc/docs/ics-pa/FAQ.html#pa%E5%92%8Coslab%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB)
 2. [一生一芯「预学习阶段」→ 如何科学地提问](https://ysyx.oscc.cc/docs/2306/preliminary/0.1.html#%E5%A6%82%E4%BD%95%E7%A7%91%E5%AD%A6%E5%9C%B0%E6%8F%90%E9%97%AE)
 >  你每一次直接把答案告诉他, 直接帮他们解决问题, 都是在剥夺他接受专业训练的机会. 相反, 如果你真的希望能帮助他, 你可以尝试在不影响他训练的情况下指出他缺少的观念和技能, 该查资料/看手册/看代码, 就让他去查资料/看手册/看代码, 引导他针对问题提出自己的思考, 然后尝试并总结解决方案. 这对你和他来说都不容易, 但学习本身就是一件需要付出的事情: 如果你让他很方便地获得问题的答案, 那他就不能从解决这个问题的过程中收获应有的训练.
 
-开放此分支，事实上违反了**学术诚信**，但笔者为什么这么做呢？原因如下：
-1. 小学期任务极不明确，「微处理器系统设计」牵扯 ysyx、南大 PA、riscv cpu 设计，三个项目交织在一起错综复杂，摸索前路异常痛苦
-2. 可参考的实验指导仅有现象，没有思考过程，看指导并不明白「我为什么要这么做？整体框架和方向是什么？」并且实验指导落后版本，适用性并不高
-3. 作为一名非 NJU 的外校同学，老师在实验过程中的指导极其有限且笔者同班同学中仅笔者自己选择「微处理器系统设计」这门小学期课设，没有同学可交流（加上大三小学期基本所有人都无心投入，「混日子」的同学占了绝大多数）
+Sharing this branch technically violates **academic integrity**, so why did I still do it? Here's why:
 
-笔者真诚地希望能够用 `report.pdf` 与 `ics2024.tar.gz` 这两份文件稍微照亮一点儿后来者的路，希望明年再选「微处理器系统设计」这门小学期的学弟学妹们不要重蹈覆辙，不会在不必要的点浪费太多时间摸索
-。要说明的一点是，笔者因为修复电脑的软硬件，花去了小学期约 2/5 的时间，最终只完成了很少部分的工作，但仅仅是投入的这 3/5 的时间，真得让笔者学到了很多理念也成长了很多，像「RTFM, STFW, RTFSC」等等。
+1. The mini-semester task was extremely unclear. The **"Microprocessor System Design" course** involves **ysyx, Nanjing University's PA, and RISC-V CPU design**, creating a complex mix of three intertwined projects. Figuring out the way forward was extremely challenging.
+2. The available lab instructions were only descriptive of phenomena, without explaining the reasoning behind them. While following the guide, I couldn't understand "Why am I doing this? What is the overall framework and direction?" Additionally, the lab instructions were outdated and not very applicable.
+3. As a student from another university (not NJU), the guidance from the instructor during the lab was very limited. Furthermore, I was the only one in my class who chose "Microprocessor System Design" for the mini-semester project, so there was no one to discuss the course with. (On top of that, most of my peers in the mini-semester were unmotivated and just trying to get by without investing effort.)
 
-希望学弟学妹们能真正从小学期中收获点儿什么，而不是浑浑噩噩得度过，浪费了宝贵的时间。
+I sincerely hope that these two files, `report.pdf` and `ics2024.tar.gz`, can help guide future students in this course, so that they won't waste too much time figuring things out unnecessarily. It's important to note that I spent about 2/5 of the mini-semester fixing my computer's software and hardware, so I only managed to complete a small portion of the work. However, even within the remaining 3/5 of the time, I truly learned a lot of concepts and grew as a student, such as **"RTFM, STFW, RTFSC"** and others.
+
+I hope that future students can genuinely gain something from the mini-semester, rather than drifting through it and wasting valuable time.
