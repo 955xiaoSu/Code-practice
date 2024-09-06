@@ -1,8 +1,12 @@
-This repository contains assignments from HNU CS students.
+请在查看 `report.pdf` 与 `ics2024.tar.gz` 之前，确保看过以下文档：
+1. [南大PA常见问题（FAQ）](https://ysyx.oscc.cc/docs/ics-pa/FAQ.html#pa%E5%92%8Coslab%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB)
+2. [一生一芯「预学习阶段」→ 如何科学地提问](https://ysyx.oscc.cc/docs/2306/preliminary/0.1.html#%E5%A6%82%E4%BD%95%E7%A7%91%E5%AD%A6%E5%9C%B0%E6%8F%90%E9%97%AE)
+>  你每一次直接把答案告诉他, 直接帮他们解决问题, 都是在剥夺他接受专业训练的机会. 相反, 如果你真的希望能帮助他, 你可以尝试在不影响他训练的情况下指出他缺少的观念和技能, 该查资料/看手册/看代码, 就让他去查资料/看手册/看代码, 引导他针对问题提出自己的思考, 然后尝试并总结解决方案. 这对你和他来说都不容易, 但学习本身就是一件需要付出的事情: 如果你让他很方便地获得问题的答案, 那他就不能从解决这个问题的过程中收获应有的训练.
 
-**What can you find here?**
-1. Check the **CCF & CSP** branch for source code. (Programming problems are sourced from the CG system and the CCF official website.)
-2. Access **MCU** programs in the MCU branch. (These may be helpful during your Sophomore Summer Semester.)
-3. The **Software** branch provides various resources if you're taking Ms. Sun Jianhua's Software Security Testing course.
-4. ~~The CS 188 branch documents the learning process of the AI-focused CS 188 course.~~
-5. The **riscv-cpu** branch contains the code and report you'll need if you choose Wu Qiang’s Micro System Design course in your Junior Year Mini-Semester.
+开放此分支，事实上违反了**学术诚信**，但笔者为什么这么做呢？原因如下：
+1. 小学期任务极不明确，「微处理器系统设计」牵扯 ysyx、南大 PA、riscv cpu 设计，三个项目交织在一起错综复杂，摸索前路异常痛苦
+2. 可参考的实验指导仅有现象，没有思考过程，看指导并不明白「我为什么要这么做？整体框架和方向是什么？」并且实验指导落后版本，适用性并不高
+3. 老师指导极其有限且笔者同班同学中仅笔者自己选择「微处理器系统设计」这门小学期课设，没有同学可交流（加上大三小学期基本所有人都无心投入，「混日子」的同学占了绝大多数）
+
+笔者真诚地希望能够用 `report.pdf` 与 `ics2024.tar.gz` 这两份文件稍微照亮一点儿后来者的路，希望明年再选「微处理器系统设计」这门小学期的学弟学妹们不要重蹈覆辙，不会在不必要的点浪费太多时间摸索
+，同时能真正从小学期中收获点儿什么。
